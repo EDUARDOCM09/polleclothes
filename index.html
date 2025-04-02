@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polle Clothes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* General body styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        /* Header styling with background image */
+        header {
+            background-image: url('https://cdn.prod.website-files.com/626c39fe1ac567f4c6aacbfe/629544f029afea99b3d7204e_628eaf05aeaf96563e150330_aumentar-ventas-en-tu-tienda-de-ropa.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+        }
+
+        #datetime {
+            font-size: 16px;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+
+        /* Welcome page */
+        #welcome-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(51, 51, 51, 0.5); /* Dark gray background with transparency */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            z-index: 1000;
+            background-image: url('https://img.freepik.com/foto-gratis/joven-comprando-tienda-ropa-masculina-hablando-telefono_1303-31020.jpg');
+            background-size: cover;
+            background-position: center;
+            backdrop-filter: blur(10px); /* Apply blur to the background */
+            transition: opacity 1s ease; /* Transition for fade-out effect */
+        }
+
+        #welcome-page h2,
+        #welcome-page p {
+            background-color: rgba(0, 0, 0, 0.6); /* Black background with transparency */
+            color: white; /* Ensure text is white */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #welcome-page h2 {
+            font-size: 50px;
+            font-weight: 700;
+        }
+
+        #welcome-page p {
+            font-size: 22px;
+            font-weight: 500;
+        }
+
+        #welcome-page button {
+            background-color: #c9a14a;
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease; /* Smooth hover effect */
+        }
+
+        #welcome-page button:hover {
+            background-color: #9f7a3e;
+        }
+
+        /* Navigation styling */
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #1f1f1f;
+            padding: 15px;
+            border-top: 2px solid #fff;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: 500;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #c9a14a;
+            border-radius: 5px;
+            transform: scale(1.1);
+            color: black; /* Change text color on hover */
+        }
+
+        /* Search bar styling */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 2px solid #ccc;
+            width: 70%;
+            min-width: 200px;
+            margin-right: 10px;
+            transition: border 0.3s ease;
+        }
+
+        .search-bar input[type="text"]:focus {
+            border: 2px solid #c9a14a;
+        }
+
+        .search-bar button {
+            background-color: #c9a14a;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            min-width: 120px;
+        }
+
+        .search-bar button:hover {
+            background-color: #9f7a3e;
+        }
+
+        /* Container for products */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 50px;
+            background-color: #fff;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Individual product styling */
+        .product {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #ddd;
+        }
+
+        .product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+            border-bottom: 2px solid #eee;
+            transition: transform 0.3s ease;
+        }
+
+        .product img:hover {
+            transform: scale(1.05);
+        }
+
+        .product h3 {
+            margin: 20px;
+            color: #333;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .product p {
+            margin: 0 20px 20px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .add-to-cart {
+            background-color: #c9a14a;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .add-to-cart:hover {
+            background-color: #9f7a3e;
+        }
+
+        /* Footer styling */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #c9a14a;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact section styling */
+        #contact-info {
+            display: none;
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        #contact-info p {
+            font-size: 18px;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        /* Welcome Text at the bottom */
+        #welcome-text {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(51, 51, 51, 0.7);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 20px;
+            z-index: 1000;
+            font-weight: 600;
+        }
+
+        /* Media query for smaller devices */
+        @media (max-width: 768px) {
+            header {
+                font-size: 32px;
+            }
+
+            nav a {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .product h3 {
+                font-size: 18px;
+            }
+
+            .product p {
+                font-size: 16px;
+            }
+
+            .search-bar input[type="text"] {
+                width: 60%;
+                min-width: 150px;
+            }
+
+            .search-bar button {
+                min-width: 80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .search-bar input[type="text"] {
+                width: 50%;
+                min-width: 120px;
+            }
+
+            .search-bar button {
+                min-width: 70px;
+            }
+        }
+    </style>
+    <script>
+        let cart = [];
+
+        function updateDateTime() {
+            const now = new Date();
+            const formattedDateTime = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+            document.getElementById('datetime').innerText = formattedDateTime;
+        }
+        setInterval(updateDateTime, 1000);
+        window.onload = updateDateTime;
+
+        function filterProducts(section) {
+            const allProducts = document.querySelectorAll('.product');
+            allProducts.forEach(product => product.style.display = 'none'); // Hide all products initially.
+
+            if (section === 'women') {
+                alert("Showing products for women.");
+                const womenProducts = document.querySelectorAll('.product.women');
+                womenProducts.forEach(product => product.style.display = 'block'); // Show women's products.
+            } else if (section === 'men') {
+                alert("Showing products for men.");
+                const menProducts = document.querySelectorAll('.product.men');
+                menProducts.forEach(product => product.style.display = 'block'); // Show men's products.
+            }
+        }
+
+        function searchProducts() {
+            const searchQuery = document.getElementById('search-input').value.toLowerCase();
+            const allProducts = document.querySelectorAll('.product');
+            let found = false;
+
+            allProducts.forEach(product => {
+                const productName = product.querySelector('h3').innerText.toLowerCase();
+                if (productName.includes(searchQuery)) {
+                    product.style.display = 'block';
+                    found = true;
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+
+            if (!found) {
+                alert('No products match your search.');
+            }
+        }
+
+        function resetView() {
+            const allProducts = document.querySelectorAll('.product');
+            allProducts.forEach(product => product.style.display = 'block');
+            document.getElementById('search-input').value = '';
+        }
+
+        function showContactInfo() {
+            const contactInfo = document.getElementById('contact-info');
+            contactInfo.style.display = contactInfo.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function hideWelcomePage() {
+            const welcomePage = document.getElementById('welcome-page');
+            welcomePage.style.opacity = 0;  /* Fading effect */
+            setTimeout(() => {
+                welcomePage.style.display = 'none'; // Hide welcome page
+            }, 1000);
+            const mainContent = document.getElementById('main-content');
+            mainContent.style.display = 'block'; // Show main content
+        }
+
+        function addToCart(productName, productPrice) {
+            cart.push({ name: productName, price: productPrice });
+            alert(`${productName} has been added to your cart.`);
+        }
+    </script>
+</head>
+<body>
+    <!-- Welcome page -->
+    <div id="welcome-page">
+        <h2>Welcome to Polle Clothes!</h2>
+        <p>Your online store for exclusive fashion.</p>
+        <button onclick="hideWelcomePage()">Enter</button>
+    </div>
+
+    <!-- Main content initially hidden -->
+    <div id="main-content" style="display: none;">
+        <header>
+            <h1>Polle Clothes</h1>
+            <div id="datetime"></div>
+        </header>
+
+        <nav>
+            <a href="#" onclick="filterProducts('men')">Men</a>
+            <a href="#" onclick="filterProducts('women')">Women</a>
+            <a href="#" onclick="resetView()">Home</a>
+            <a href="#">Shop</a>
+            <a href="#" onclick="showContactInfo()">Contact</a>
+
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search for a product..." />
+                <button onclick="searchProducts()">Search</button>
+            </div>
+        </nav>
+
+        <div class="container">
+            <!-- Men's Products -->
+            <div class="product men">
+                <img src="https://molecule.gr/11434-big_default_2x/pullover-hoodie-fluffy-molecule-00043-assassins-front-back-print-cotton-blend-320-gsm-regular-fit-black.jpg" alt="Exclusive Product" loading="lazy">
+                <h3>Hoodie</h3>
+                <p>$599.00</p>
+                <button class="add-to-cart" onclick="addToCart('Hoodie', 599)">Add to Cart</button>
+            </div>
+            <div class="product men">
+                <img src="https://airportag.com/cdn/shop/files/FLIGHT-TAGS-t-shirt-black.jpg?v=1724113672&width=2048" alt="T-Shirt" loading="lazy">
+                <h3>Stylish T-Shirt</h3>
+                <p>$399.00</p>
+                <button class="add-to-cart" onclick="addToCart('Stylish T-Shirt', 399)">Add to Cart</button>
+            </div>
+            <div class="product men">
+                <img src="https://pantalonesdemezclilla.mx/cdn/shop/files/Rotos-straight-Jeans-azules-Para-Hombre_2.webp?v=1706808198" alt="Jeans" loading="lazy">
+                <h3>Jeans</h3>
+                <p>$699.00</p>
+                <button class="add-to-cart" onclick="addToCart('Jeans', 699)">Add to Cart</button>
+            </div>
+            <div class="product men">
+                <img src="https://images.tokopedia.net/img/cache/500-square/VqbcmM/2023/11/2/f02f0c5d-cf04-4c95-95a4-dba59bfc8d15.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" alt="Jacket" loading="lazy">
+                <h3>Jacket</h3>
+                <p>$599.00</p>
+                <button class="add-to-cart" onclick="addToCart('Jacket', 599)">Add to Cart</button>
+            </div>
+
+            <!-- Women's Products -->
+            <div class="product women">
+                <img src="https://m.media-amazon.com/images/I/71n-G9ndREL._AC_UY1000_.jpg" alt="Dress" loading="lazy">
+                <h3>Dress</h3>
+                <p>$499.00</p>
+                <button class="add-to-cart" onclick="addToCart('Dress', 499)">Add to Cart</button>
+            </div>
+            <div class="product women">
+                <img src="https://i5.walmartimages.com/asr/e095256c-c9cc-4610-abf9-c77412c6ba4e.a397d36d0e91028a828b24b60dad9019.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF" alt="Blouse" loading="lazy">
+                <h3>Blouse</h3>
+                <p>$299.00</p>
+                <button class="add-to-cart" onclick="addToCart('Blouse', 299)">Add to Cart</button>
+            </div>
+            <div class="product women">
+                <img src="https://images.napali.app/global/billabong-products/all/default/xlarge/s9cm04bip0_billabong,m_0491_frt1.jpg" alt="Cap" loading="lazy">
+                <h3>Cap</h3>
+                <p>$399.00</p>
+                <button class="add-to-cart" onclick="addToCart('Cap', 399)">Add to Cart</button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Polle Clothes. All rights reserved.</p>
+            <p><a href="#">Terms and Conditions</a> | <a href="#">Privacy Policy</a></p>
+        </footer>
+
+        <div id="welcome-text">
+            <p>Thank you for choosing us! Explore our clothing catalog and enjoy.</p>
+        </div>
+    </div>
+</body>
+</html>
